@@ -1,13 +1,10 @@
-FROM n8nio/n8n:2.18.5
+FROM docker.n8n.io/n8nio/n8n:2.18.5
 
 USER root
 
 # Ensure n8n uses your mounted volume folder
 ENV N8N_USER_FOLDER=/home/node/.n8n \
     N8N_REINSTALL_MISSING_PACKAGES=true
-
-# Install pnpm (package requires pnpm; npm is blocked by "only-allow pnpm")
-RUN npm i -g pnpm
 
 # Add entrypoint that installs the node into the persistent volume folder
 COPY docker-entrypoint.sh /docker-entrypoint.sh
